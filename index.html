@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Pattern Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Crime Pattern Analysis & Prediction</h1>
+    </header>
+
+    <section class="input-form">
+        <h2>Enter Crime Details</h2>
+        <form action="/predict" method="POST">
+            <label for="latitude">Latitude:</label>
+            <input type="text" name="latitude" required>
+
+            <label for="longitude">Longitude:</label>
+            <input type="text" name="longitude" required>
+
+            <label for="day_of_week">Day of the Week:</label>
+            <select name="day_of_week">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select>
+
+            <label for="hour">Hour (0-23):</label>
+            <input type="number" name="hour" min="0" max="23" required>
+
+            <label for="weather">Weather Condition:</label>
+            <select name="weather">
+                <option value="Clear">Clear</option>
+                <option value="Cloudy">Cloudy</option>
+                <option value="Rainy">Rainy</option>
+                <option value="Foggy">Foggy</option>
+                <option value="Snowy">Snowy</option>
+            </select>
+
+            <button type="submit">Predict Crime Risk</button>
+        </form>
+    </section>
+
+    <section class="map">
+        <h2>Crime Hotspots</h2>
+        <iframe src="{{ url_for('crime_map') }}" width="100%" height="500px"></iframe>
+    </section>
+
+</body>
+</html>
